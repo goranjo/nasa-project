@@ -1,4 +1,4 @@
-import {APODContainer} from "./MarsRoverPhotos.styled.tsx";
+import {MarsRoverPhotosContainer} from "./MarsRoverPhotos.styled.tsx";
 import Breadcrumbs from "@/modules/BreadcrumbsModule/BreadCrumbsModule.tsx";
 import CalendarWithRange from "../../modules/components/ui/components/Calendar/CalendarWithRange/CalendarWithRange.tsx";
 // import {useState} from "react";
@@ -14,9 +14,9 @@ function MarsRoverPhotos() {
     return (
         <>
             <Breadcrumbs/>
-            <APODContainer>
+            <MarsRoverPhotosContainer>
                 <CalendarWithRange/>
-            </APODContainer>
+            </MarsRoverPhotosContainer>
         </>
     )
 }

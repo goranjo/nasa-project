@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-export const APODContainer = styled.div`
+export const MarsRoverPhotosContainer = styled.div`
   display: flex;
 `;
