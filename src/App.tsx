@@ -1,11 +1,10 @@
-// import './App.css'
-import CalendarWithRange from "./modules/components/ui/components/Calendar/CalendarWithRange/CalendarWithRange.tsx";
+import RouterModule from "@/modules/RouterModule";
 
 function App() {
 
     return (
         <>
-            <CalendarWithRange/>
+            <RouterModule/>
         </>
     )
 }

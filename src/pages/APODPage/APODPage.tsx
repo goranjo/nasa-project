@@ -1,10 +1,14 @@
-
+import Breadcrumbs from "@/modules/BreadcrumbsModule/BreadCrumbsModule.tsx";
 
 function APODPage() {
     return (
-        <div>
-            APODPage
-        </div>
+        <>
+            <Breadcrumbs/>
+            <div>
+                APODPage
+            </div>
+        </>
+
     )
 }
 

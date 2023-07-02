@@ -32,7 +32,6 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({custom_path}) => {
         );
 
     const breadcrumbItems: BreadcrumbItem[] = [
-        {label: "Home", url: "/"},
         ...(custom_path ? [custom_path] : []),
         ...titles.map((pathname, index) => ({
             label: pathname,
