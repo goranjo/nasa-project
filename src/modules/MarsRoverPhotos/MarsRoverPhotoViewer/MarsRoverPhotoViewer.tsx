@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Dialog} from 'primereact/dialog';
-import RegularCalendar from '@/components/ui/Calendar/RegularCalendar.tsx';
+import RegularCalendar from '@/components/ui/Calendar/RegularCalendar/RegularCalendar.tsx';
 import RoverDropdown from "@/modules/MarsRoverPhotos/components/RoverDropDown.tsx";
 import PhotoList from "@/components/VirtualList/PhotoList.tsx";
 import {MarsRover} from "@/modules/MarsRoverPhotos/types/enums/MarsRover.tsx";
