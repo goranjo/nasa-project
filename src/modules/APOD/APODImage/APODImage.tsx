@@ -20,7 +20,7 @@ const APODImage: React.FC<APODImageProps> = ({title, url, onLoad}) => {
     return (
         <ImageContainer className={`apod-image ${isLoaded ? 'loaded' : ''}`}>
             <Title>{title}</Title>
-            <Image src={url} alt={title} onLoad={handleImageLoad} isloaded={isLoaded} />
+            <Image src={url} alt={title} onLoad={handleImageLoad} isloaded={isLoaded.toString()} />
         </ImageContainer>
     );
 };

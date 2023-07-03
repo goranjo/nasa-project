@@ -1,7 +1,10 @@
+import NewEarthObjectList from "@/modules/NewEarthObjectsList";
+
 const NearEarthObjects = () => {
   return (
       <div>
-          Near Earth Objects
+          <h2>New Earth Object List</h2>
+          <NewEarthObjectList/>
       </div>
   )
 }

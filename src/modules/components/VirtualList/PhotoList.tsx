@@ -19,6 +19,7 @@ const PhotoList: React.FC<PhotoListProps> = ({ photos, openPreviewModal }) => {
         return (
             <div key={photo.id} className="photo-item" style={style} ref={index === photos.length - 1 ? lastPhotoRef : undefined}>
                 <img
+                    style={{marginBottom: '10px'}}
                     src={photo.img_src}
                     alt={photo.id.toString()}
                     className="thumbnail"
@@ -31,10 +32,11 @@ const PhotoList: React.FC<PhotoListProps> = ({ photos, openPreviewModal }) => {
     return (
         <div className="photo-list">
             <List
+                style={{cursor: 'pointer'}}
                 height={600}
+                width={'auto'}
                 itemCount={photos.length}
                 itemSize={100}
-                width={500}
                 itemData={photos}
             >
                 {renderPhotoItem}

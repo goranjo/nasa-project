@@ -8,6 +8,5 @@ export async function fetchMarsRoverPhotos(rover: MarsRover, date: Date): Promis
     const response = await fetch(
         `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${formattedDate}&api_key=${config.NASA_API_KEY}`
     );
-    const data: IMarsRoverPhoto = await response.json();
-    return data;
+    return await response.json() as IMarsRoverPhoto;
 }

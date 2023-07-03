@@ -4,6 +4,7 @@ import {fetchAPOD} from '@/modules/APOD/APODService.tsx';
 import {IAPODData} from "@/modules/APOD/types/IAPODData.ts";
 import {IAPODResponse} from "@/modules/APOD/types/IAPODDataResponse.ts";
 import * as Styles from "@/modules/APOD/APOD/APOD.styled.ts";
+import config from "@/modules/APOD/config/config.ts";
 
 const APOD: React.FC = () => {
     const [apodData, setApodData] = useState<IAPODData | null>(null);
@@ -11,7 +12,7 @@ const APOD: React.FC = () => {
     const [imageKey, setImageKey] = useState(0);
 
     useEffect(() => {
-        const timer = setInterval(fetchData, 10000);
+        const timer = setInterval(fetchData, config.TIMER_INTERVAL);
         fetchData();
 
         return () => {

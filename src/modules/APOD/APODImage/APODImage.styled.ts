@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface ImageProps {
-    isloaded: boolean;
+    isloaded: string;
 }
 
 export const ImageContainer = styled.div`
@@ -11,7 +11,7 @@ export const ImageContainer = styled.div`
 export const Image = styled.img<ImageProps>`
   max-width: 100%;
   height: auto;
-  opacity: ${({ isloaded }) => (isloaded ? '1' : '0')};
+  opacity: ${({ isloaded }) => (isloaded === 'true' ? '1' : '0')};
   transition: opacity 0.5s ease;
 `;
 
