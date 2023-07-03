@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomDropdown from "@/modules/components/ui/components/DropDown/CustomDropDown.tsx";
+import CustomDropdown from "@/components/ui/DropDown/CustomDropDown.tsx";
 
 enum MarsRover {
     Curiosity = 'curiosity',

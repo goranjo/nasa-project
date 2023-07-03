@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import CalendarWithRange from '@/modules/components/ui/components/Calendar/CalendarWithRange/CalendarWithRange.tsx';
+import CalendarWithRange from '@/components/ui/Calendar/CalendarWithRange/CalendarWithRange.tsx';
 import NeoList from '@/modules/NewEarthObjectsList/NeoList/NeoList.tsx';
 
 const NewEarthObjectList: React.FC = () => {
