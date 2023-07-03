@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Dialog } from 'primereact/dialog';
-import config from '@/config/config.ts';
-import { formatEarthDate } from '@/modules/MarsRoverPhotos/helpers/helpers.ts';
+import React, {useState, useEffect} from 'react';
+import {Dialog} from 'primereact/dialog';
 import RegularCalendar from '@/modules/components/ui/components/Calendar/RegularCalendar.tsx';
 import RoverDropdown from "@/modules/MarsRoverPhotos/components/RoverDropDown.tsx";
 import PhotoList from "@/modules/components/VirtualList/PhotoList.tsx";
-
-enum MarsRover {
-    Curiosity = 'curiosity',
-    Opportunity = 'opportunity',
-    Spirit = 'spirit',
-}
+import {MarsRover} from "@/modules/MarsRoverPhotos/types/enums/MarsRover.tsx";
+import {fetchMarsRoverPhotos} from "@/modules/MarsRoverPhotos/MarsRoverPhotoViewerService.tsx";
 
 interface Photo {
     id: number;
@@ -32,20 +26,18 @@ const MarsRoverPhotoViewer: React.FC = () => {
 
     const fetchPhotos = async (date: Date, rover: MarsRover) => {
         try {
-            const formattedDate = formatEarthDate(date);
-            const response = await fetch(
-                `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${formattedDate}&api_key=${config.NASA_API_KEY}`
-            );
-            const data = await response.json();
-            setPhotos(data.photos);
+            const response = await fetchMarsRoverPhotos(rover, date);
+            setPhotos(response.photos);
         } catch (error) {
             console.error('Error fetching photos:', error);
         }
     };
 
-    const handleDateChange = (value: Date | undefined) => {
-        setSelectedDate(value);
+
+    const handleDateChange = (value: Date | Date[] | null) => {
+        setSelectedDate(value ? (Array.isArray(value) ? value[0] : value) : undefined);
     };
+
 
     const handleRoverChange = (rover: MarsRover) => {
         setSelectedRover(rover);
@@ -76,12 +68,12 @@ const MarsRoverPhotoViewer: React.FC = () => {
             </div>
             <div>
                 <label htmlFor="rover">Select Rover:</label>
-                <RoverDropdown selectedRover={selectedRover} onChange={handleRoverChange} />
+                <RoverDropdown selectedRover={selectedRover} onChange={handleRoverChange}/>
             </div>
             {photos.length === 0 ? (
                 <p>No photos available for the selected date.</p>
             ) : (
-                <PhotoList photos={photos} openPreviewModal={openPreviewModal} />
+                <PhotoList photos={photos} openPreviewModal={openPreviewModal}/>
             )}
             <Dialog
                 visible={previewVisible}
@@ -91,7 +83,8 @@ const MarsRoverPhotoViewer: React.FC = () => {
                 maximizable
                 blockScroll
             >
-                {selectedPhoto && <img src={selectedPhoto.img_src} alt={selectedPhoto.id.toString()} style={{ width: '100%' }} />}
+                {selectedPhoto &&
+                    <img src={selectedPhoto.img_src} alt={selectedPhoto.id.toString()} style={{width: '100%'}}/>}
             </Dialog>
         </div>
     );

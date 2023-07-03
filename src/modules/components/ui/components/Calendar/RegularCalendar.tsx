@@ -1,23 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Calendar, CalendarProps, CalendarChangeEvent} from 'primereact/calendar';
 
-interface RegularCalendar extends Omit<CalendarProps, 'value' | 'onChange'> {
+interface RegularCalendarProps extends Omit<CalendarProps, 'onChange'> {
     onChange: (value: Date | Date[] | null) => void;
+    value: Date | undefined;
 }
 
-const RegularCalendar: React.FC<RegularCalendar>
+const RegularCalendar: React.FC<RegularCalendarProps>
     = ({
            onChange,
+           value,
            ...rest
        }) => {
-
     const {placeholder} = rest;
-    const [dates, setDates] = useState<string | Date | Date[] | null>(null);
 
     const handleOnChange = (e: CalendarChangeEvent): void => {
-        const value = e.value;
-        const parsedValue = typeof value === 'string' ? new Date(value) : value || null;
-        setDates(parsedValue)
+        const parsedValue: Date | Date[] | null = e.value instanceof Date ? e.value : null;
         if (onChange) {
             onChange(parsedValue);
         }
@@ -26,11 +24,12 @@ const RegularCalendar: React.FC<RegularCalendar>
     return (
         <div className="card flex justify-content-center">
             <Calendar
-                value={dates}
+                value={value}
                 onChange={handleOnChange}
                 showIcon={false}
                 placeholder={placeholder}
-                {...rest} />
+                {...rest}
+            />
         </div>
     );
 };
