@@ -32,7 +32,6 @@ const CalendarWithRange: React.FC<CalendarWithRange>
             }, { startDate: null, endDate: null });
         }
 
-        console.log(dateRange, 'dateRange');
         onChange(dateRange as Date | Date[] | null);
     };
 
