@@ -25,7 +25,11 @@ const RouterModule = () => {
                 </ul>
             </nav>
             <Routes>
-                <Route path="/" element={<APODPage/>}></Route>
+                <Route path="/" element={
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <APODPage/>
+                    </Suspense>
+                }></Route>
                 <Route path="/mars-rover-photos" element={
                     <>
                         <Helmet>

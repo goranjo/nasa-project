@@ -1,17 +1,16 @@
 import React, {useState} from 'react';
 import {Calendar, CalendarProps, CalendarChangeEvent} from 'primereact/calendar';
 
-interface CalendarWithRange extends Omit<CalendarProps, 'value' | 'onChange'> {
-    // dateRange?: Date | Date[] | null;
-    onChange?: (value: Date | Date[] | null) => void;
+interface RegularCalendar extends Omit<CalendarProps, 'value' | 'onChange'> {
+    onChange: (value: Date | Date[] | null) => void;
 }
 
-const CalendarWithRange: React.FC<CalendarWithRange>
+const RegularCalendar: React.FC<RegularCalendar>
     = ({
            onChange,
            ...rest
        }) => {
-    
+
     const {placeholder} = rest;
     const [dates, setDates] = useState<string | Date | Date[] | null>(null);
 
@@ -27,7 +26,6 @@ const CalendarWithRange: React.FC<CalendarWithRange>
     return (
         <div className="card flex justify-content-center">
             <Calendar
-                selectionMode="range"
                 value={dates}
                 onChange={handleOnChange}
                 showIcon={false}
@@ -37,4 +35,4 @@ const CalendarWithRange: React.FC<CalendarWithRange>
     );
 };
 
-export default CalendarWithRange;
+export default RegularCalendar;
