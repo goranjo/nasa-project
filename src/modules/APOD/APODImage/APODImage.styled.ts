@@ -24,3 +24,13 @@ export const Title = styled.h2`
   background-color: rgba(0, 0, 0, 0.5);
   padding: 5px;
 `;
+
+export const Date = styled.h2`
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  color: white;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+`;

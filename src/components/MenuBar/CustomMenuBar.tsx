@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {StyledMenuBar, StyledMenuItem} from "@/components/MenuBar/MenuBar.styled.tsx";
+import {StyledMenuBar, StyledMenuItem} from "@/components/MenuBar/CustomMenuBar.styled.tsx";
 
 const CustomMenuBar = () => {
     const items = [

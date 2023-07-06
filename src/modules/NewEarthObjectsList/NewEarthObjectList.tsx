@@ -18,7 +18,10 @@ const NewEarthObjectList: React.FC = () => {
                 placeholder={'Select a range'}
                 onChange={handleDateRangeChange as unknown as (value: Date | Date[] | null) => void}
             />
-            <NeoList startDate={dateRange.startDate} endDate={dateRange.endDate}/>
+            <NeoList
+                startDate={dateRange.startDate}
+                endDate={dateRange.endDate}
+            />
         </div>
     );
 };

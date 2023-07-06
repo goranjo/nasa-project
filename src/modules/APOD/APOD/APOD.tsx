@@ -44,12 +44,12 @@ const APOD: React.FC = () => {
     return (
         <div>
             <h1>Astronomy Picture of the Day</h1>
-            <span>{apodData.date}</span>
             <Styles.TransitionContainer transitioning={isTransitioning}>
                 <APODImage
                     key={imageKey}
                     title={apodData.title}
                     url={apodData.url}
+                    date={apodData.date}
                     onLoad={() => setIsTransitioning(false)}
                 />
             </Styles.TransitionContainer>
