@@ -22,14 +22,17 @@ const CalendarWithRange: React.FC<CalendarWithRange>
 
         let dateRange = null;
         if (Array.isArray(parsedValue)) {
-            dateRange = parsedValue.reduce((prev: { startDate: Date | null, endDate: Date | null }, curr: Date, index: number) => {
+            dateRange = parsedValue.reduce((prev: {
+                startDate: Date | null,
+                endDate: Date | null
+            }, curr: Date, index: number) => {
                 if (index === 0) {
-                    return { startDate: curr, endDate: null };
+                    return {startDate: curr, endDate: null};
                 } else if (index === 1) {
-                    return { ...prev, endDate: curr };
+                    return {...prev, endDate: curr};
                 }
                 return prev;
-            }, { startDate: null, endDate: null });
+            }, {startDate: null, endDate: null});
         }
 
         onChange(dateRange as Date | Date[] | null);
@@ -44,7 +47,8 @@ const CalendarWithRange: React.FC<CalendarWithRange>
                 onChange={handleOnChange}
                 showIcon={false}
                 placeholder={placeholder}
-                {...rest} />
+                {...rest}
+            />
         </div>
     );
 };

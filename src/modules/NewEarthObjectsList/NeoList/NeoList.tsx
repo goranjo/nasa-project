@@ -3,6 +3,7 @@ import NEOItem from '@/modules/NewEarthObjectsList/NeoItem/NeoItem';
 import { iNEO } from '@/modules/NewEarthObjectsList/types/iNEO';
 import config from '@/config/config';
 import { formatEarthDate } from '@/modules/MarsRoverPhotos/helpers/helpers';
+import {Link} from "react-router-dom";
 
 interface NEOListProps {
     startDate: string | Date | null;
@@ -35,6 +36,8 @@ const NEOList: React.FC<NEOListProps> = ({ startDate, endDate }) => {
                         if (closestDistance !== undefined) {
                             neos.push({
                                 id: neoItem.id,
+                                name: neoItem.name,
+                                singleNeo: neoItem.links.self,
                                 closestDistance: parseFloat(closestDistance),
                             });
                         }
@@ -52,10 +55,13 @@ const NEOList: React.FC<NEOListProps> = ({ startDate, endDate }) => {
         }
     }, [startDate, endDate]);
 
+    //pass to Link component neo.singleLink
     return (
         <div>
             {neos.map((neo) => (
-                <NEOItem key={neo.id} neo={neo} />
+                <Link key={neo.id} to={`/near-earth-objects/neo-details/${neo.id}`}>
+                    <NEOItem neo={neo} />
+                </Link>
             ))}
         </div>
     );

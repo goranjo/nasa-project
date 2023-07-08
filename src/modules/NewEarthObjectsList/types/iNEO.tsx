@@ -1,5 +1,6 @@
 export interface iNEO {
     id: string;
-    // closestDistanceInLunarUnits: number;
     closestDistance: number;
+    name: string;
+    singleNeo: string;
 }

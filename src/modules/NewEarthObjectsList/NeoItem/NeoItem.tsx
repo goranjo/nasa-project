@@ -27,9 +27,9 @@ const NEOItem: React.FC<NEOItemProps> = ({neo}) => {
     }
 
     return (
-        <div style={{backgroundColor: color}}>
-            <span>{neo.id}</span>
-            <span>{neo.closestDistance} LD</span>
+        <div style={{color: '#fff', backgroundColor: color}}>
+            <p>Name: {neo.name}</p>
+            <p>Lunar Distance: {neo.closestDistance} LD</p>
         </div>
     );
 };

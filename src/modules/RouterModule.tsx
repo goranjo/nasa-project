@@ -2,6 +2,7 @@ import {Route, Routes} from "react-router-dom";
 import React, {Suspense} from "react";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import CustomMenuBar from "@/components/MenuBar/CustomMenuBar.tsx";
+import NeoDetails from "@/modules/NewEarthObjectsList/NeoDetails/NeoDetails.tsx";
 
 const HomePage = React.lazy(
     () => import("@/pages/HomePage/HomePage.tsx"),
@@ -66,6 +67,10 @@ const RouterModule = () => {
                         </Suspense>
                     </>
                 }></Route>
+                <Route path="/near-earth-objects/neo-details/:id" element={
+                    <NeoDetails/>
+                }>
+                </Route>
             </Routes>
         </HelmetProvider>
     );

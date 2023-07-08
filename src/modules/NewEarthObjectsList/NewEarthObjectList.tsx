@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
+import {Link, Route, Router, Routes} from "react-router-dom";
 import CalendarWithRange from '@/components/ui/Calendar/CalendarWithRange/CalendarWithRange.tsx';
 import NeoList from '@/modules/NewEarthObjectsList/NeoList/NeoList.tsx';
+import NeoDetails from "@/modules/NewEarthObjectsList/NeoDetails/NeoDetails.tsx";
 
 const NewEarthObjectList: React.FC = () => {
     const [dateRange, setDateRange] = useState<{ startDate: Date | null, endDate: Date | null }>({
