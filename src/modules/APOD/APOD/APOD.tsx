@@ -44,7 +44,7 @@ const APOD: React.FC = () => {
     return (
         <div>
             <h1>Astronomy Picture of the Day</h1>
-            <Styles.TransitionContainer transitioning={isTransitioning}>
+            <Styles.TransitionContainer transitioning={isTransitioning.toString()}>
                 <APODImage
                     key={imageKey}
                     title={apodData.title}

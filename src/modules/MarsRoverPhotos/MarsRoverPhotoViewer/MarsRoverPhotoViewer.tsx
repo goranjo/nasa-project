@@ -2,21 +2,19 @@ import React, {useState, useEffect} from 'react';
 import {Dialog} from 'primereact/dialog';
 import RegularCalendar from '@/components/ui/Calendar/RegularCalendar/RegularCalendar.tsx';
 import RoverDropdown from "@/modules/MarsRoverPhotos/components/RoverDropDown.tsx";
-import PhotoList from "@/components/VirtualList/PhotoList.tsx";
+import PhotoList from "@/components/VirtualList/PhotoList/PhotoList.tsx";
 import {MarsRover} from "@/modules/MarsRoverPhotos/types/enums/MarsRover.tsx";
 import {fetchMarsRoverPhotos} from "@/modules/MarsRoverPhotos/MarsRoverPhotoViewerService.tsx";
+import {IPhoto} from "@/modules/MarsRoverPhotos/components/VirtualList/types/IPhoto";
+import MarsPhotoVirtualList from "@/modules/MarsRoverPhotos/components/VirtualList/MarsPhotoVirtualList.tsx";
 
-interface Photo {
-    id: number;
-    img_src: string;
-}
 
 const MarsRoverPhotoViewer: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
     const [selectedRover, setSelectedRover] = useState<MarsRover>(MarsRover.Curiosity);
-    const [photos, setPhotos] = useState<Photo[]>([]);
+    const [photos, setPhotos] = useState<IPhoto[]>([]);
     const [previewVisible, setPreviewVisible] = useState(false);
-    const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+    const [selectedPhoto, setSelectedPhoto] = useState<IPhoto | null>(null);
 
     useEffect(() => {
         if (selectedDate) {
@@ -43,7 +41,7 @@ const MarsRoverPhotoViewer: React.FC = () => {
         setSelectedRover(rover);
     };
 
-    const openPreviewModal = (photo: Photo) => {
+    const openPreviewModal = (photo: IPhoto) => {
         setSelectedPhoto(photo);
         setPreviewVisible(true);
     };
@@ -68,12 +66,18 @@ const MarsRoverPhotoViewer: React.FC = () => {
             </div>
             <div>
                 <label htmlFor="rover">Select Rover:</label>
-                <RoverDropdown selectedRover={selectedRover} onChange={handleRoverChange}/>
+                <RoverDropdown
+                    selectedRover={selectedRover}
+                    onChange={handleRoverChange}
+                />
             </div>
             {photos.length === 0 ? (
                 <p>No photos available for the selected date.</p>
             ) : (
-                <PhotoList photos={photos} openPreviewModal={openPreviewModal}/>
+                <MarsPhotoVirtualList
+                    photos={photos}
+                    openPreviewModal={openPreviewModal}
+                />
             )}
             <Dialog
                 visible={previewVisible}
@@ -84,7 +88,7 @@ const MarsRoverPhotoViewer: React.FC = () => {
                 blockScroll
             >
                 {selectedPhoto &&
-                    <img src={selectedPhoto.img_src} alt={selectedPhoto.id.toString()} style={{width: '100%'}}/>}
+                    <img src={selectedPhoto.img_src} alt={selectedPhoto.id.toString()} style={{maxWidth: '100%'}}/>}
             </Dialog>
         </div>
     );

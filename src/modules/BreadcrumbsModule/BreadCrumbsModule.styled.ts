@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import {BreadCrumb} from "primereact/breadcrumb";
 
-export const CustomBreadCrumbs = styled(BreadCrumb)`
-  &&&{
+export const CustomBreadCrumbs = styled.div`
+  &{
     border: none;
     padding: 0;
     font-size: 14px;

@@ -9,11 +9,11 @@ const fadeOut = keyframes`
   }
 `;
 
-export const TransitionContainer = styled.div<{ transitioning: boolean }>`
+export const TransitionContainer = styled.div<{ transitioning: string }>`
   transition: opacity 0.5s ease;
-  opacity: ${({ transitioning }) => (transitioning ? '0' : '1')};
+  opacity: ${({ transitioning }) => (!transitioning ? '1' : '0')};
   animation: ${({ transitioning }) =>
-          transitioning
+          !transitioning
                   ? css`
           ${fadeOut} 0.5s ease forwards
         `
