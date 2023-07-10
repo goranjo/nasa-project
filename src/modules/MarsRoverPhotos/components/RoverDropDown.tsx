@@ -1,5 +1,5 @@
 import React from 'react';
-import RegularDropDown from "@/components/ui/DropDown/RegularDropDown.tsx";
+import RegularDropDown, { RegularDropDownProps } from "@/components/ui/DropDown/RegularDropDown";
 
 enum MarsRover {
     Curiosity = 'curiosity',
@@ -7,22 +7,21 @@ enum MarsRover {
     Spirit = 'spirit',
 }
 
-interface RoverDropdownProps {
+interface RoverDropdownProps extends RegularDropDownProps {
     selectedRover: MarsRover;
-    onChange: (rover: MarsRover) => void;
+    onChange: (rover: string) => void;
 }
 
-const RoverDropdown: React.FC<RoverDropdownProps> = ({selectedRover, onChange}) => {
-    const roverOptions = [
-        {label: 'Curiosity', value: MarsRover.Curiosity},
-        {label: 'Opportunity', value: MarsRover.Opportunity},
-        {label: 'Spirit', value: MarsRover.Spirit},
-    ];
+const RoverDropdown: React.FC<RoverDropdownProps> = ({ selectedRover, onChange }): React.ReactElement => {
+    const roverOptions = Object.values(MarsRover).map((rover) => ({
+        label: rover.charAt(0).toUpperCase() + rover.slice(1),
+        value: rover,
+    }));
 
     return <RegularDropDown
         options={roverOptions}
         value={selectedRover}
-        onChange={(e) => onChange(e.value as MarsRover)}
+        onChange={(rover) => onChange(rover as MarsRover)}
     />;
 };
 

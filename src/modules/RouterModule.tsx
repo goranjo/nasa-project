@@ -1,23 +1,23 @@
 import {Route, Routes} from "react-router-dom";
 import React, {Suspense} from "react";
 import {Helmet, HelmetProvider} from "react-helmet-async";
-import CustomMenuBar from "@/components/MenuBar/CustomMenuBar.tsx";
-import NeoDetails from "@/modules/NewEarthObjectsList/NeoDetails/NeoDetails.tsx";
+import CustomMenuBar from "@/components/MenuBar/CustomMenuBar";
+import NeoDetails from "@/modules/NewEarthObjectsList/NeoDetails/NeoDetails";
 
 const HomePage = React.lazy(
-    () => import("@/pages/HomePage/HomePage.tsx"),
+    () => import("@/pages/HomePage/HomePage"),
 );
 
 const APODPage = React.lazy(
-    () => import("@/pages/APODPage/APODPage.tsx"),
+    () => import("@/pages/APODPage/APODPage"),
 );
 
 const MarsRoverPhotos = React.lazy(
-    () => import("@/pages/MarsRoverPhotos/MarsRoverPhotos.tsx"),
+    () => import("@/pages/MarsRoverPhotos/MarsRoverPhotos"),
 );
 
 const NearEarthObjects = React.lazy(
-    () => import("@/pages/NearEarthObjects/NearEarthObjects.tsx"),
+    () => import("@/pages/NearEarthObjects/NearEarthObjects"),
 );
 
 const RouterModule = () => {
@@ -67,7 +67,7 @@ const RouterModule = () => {
                         </Suspense>
                     </>
                 }></Route>
-                <Route path="/near-earth-objects/neo-details/:id" element={
+                <Route path="/near-earth-objects/:id" element={
                     <NeoDetails/>
                 }>
                 </Route>

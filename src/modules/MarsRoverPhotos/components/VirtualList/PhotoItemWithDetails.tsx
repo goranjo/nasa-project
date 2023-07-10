@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { formatEarthDate } from "@/modules/MarsRoverPhotos/helpers/helpers.ts";
-import PhotoItem from "@/components/VirtualList/PhotoList/PhotoItem.tsx";
+import {formatEarthDate} from "@/modules/MarsRoverPhotos/helpers/helpers";
+import PhotoItem, {PhotoItemProps} from "@/components/VirtualList/PhotoList/PhotoItem";
 
 const PhotoItemWrapper = styled.div`
   position: relative;
@@ -25,7 +25,7 @@ const PhotoDetails = styled.div`
   cursor: pointer;
 `;
 
-const PhotoItemWithDetails: React.FC<PhotoItemProps> = ({ photo, openPreviewModal, style }) => {
+const PhotoItemWithDetails: React.FC<PhotoItemProps> = ({photo, openPreviewModal, style}): React.ReactElement => {
     const stylePhotoItem = {
         ...style,
         width: "unset",

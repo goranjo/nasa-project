@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import APODImage from '@/modules/APOD/APODImage/APODImage.tsx';
-import {fetchAPOD} from '@/modules/APOD/APODService.tsx';
-import {IAPODData} from "@/modules/APOD/types/IAPODData.ts";
-import {IAPODResponse} from "@/modules/APOD/types/IAPODDataResponse.ts";
-import * as Styles from "@/modules/APOD/APOD/APOD.styled.ts";
-import config from "@/modules/APOD/config/config.ts";
+import APODImage from '@/modules/APOD/APODImage/APODImage';
+import {fetchAPOD} from '@/modules/APOD/APODService';
+import {IAPODData} from "@/modules/APOD/types/IAPODData";
+import {IAPODResponse} from "@/modules/APOD/types/IAPODDataResponse";
+import * as Styles from "@/modules/APOD/APOD/APOD.styled";
+import config from "@/modules/APOD/config/config";
 
-const APOD: React.FC = () => {
+const APOD: React.FC = (): React.ReactElement => {
     const [apodData, setApodData] = useState<IAPODData | null>(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [imageKey, setImageKey] = useState(0);
@@ -44,7 +44,7 @@ const APOD: React.FC = () => {
     return (
         <div>
             <h1>Astronomy Picture of the Day</h1>
-            <Styles.TransitionContainer transitioning={isTransitioning.toString()}>
+            <Styles.TransitionContainer transitioning={isTransitioning ? 'true' : 'false'}>
                 <APODImage
                     key={imageKey}
                     title={apodData.title}

@@ -1,4 +1,4 @@
-import {iNEO} from "@/modules/NewEarthObjectsList/types/iNEO.tsx";
+import {iNEO} from "@/modules/NewEarthObjectsList/types/iNEO";
 import React from "react";
 
 enum NEOColor {
@@ -11,7 +11,7 @@ interface NEOItemProps {
     neo: iNEO;
 }
 
-const NEOItem: React.FC<NEOItemProps> = ({neo}) => {
+const NEOItem: React.FC<NEOItemProps> = ({neo}): React.ReactElement => {
     const colorLookupTable: { [key: number]: NEOColor } = {
         0.5: NEOColor.Red,
         1: NEOColor.Orange,

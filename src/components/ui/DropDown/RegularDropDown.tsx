@@ -1,13 +1,19 @@
 import React from 'react';
-import { Dropdown, DropdownProps } from 'primereact/dropdown';
-import {MarsRover} from "@/modules/MarsRoverPhotos/types/enums/MarsRover.tsx";
+import {Dropdown, DropdownChangeEvent, DropdownProps} from 'primereact/dropdown';
 
-interface CustomDropdownProps extends DropdownProps {
-    options: { label: string; value: MarsRover }[];
+export interface RegularDropDownProps extends Omit<DropdownProps, 'onChange'> {
+    options?: { label: string; value: string }[];
+    onChange?: (value: string) => void;
 }
 
-const RegularDropDown: React.FC<CustomDropdownProps> = ({ options, ...props }) => {
-    return <Dropdown options={options} {...props} />;
+const RegularDropDown: React.FC<RegularDropDownProps> = ({options, onChange, ...props}) => {
+    const handleOnChange = (event: DropdownChangeEvent) => {
+        if (onChange) {
+            onChange(event.value);
+        }
+    };
+
+    return <Dropdown options={options} onChange={handleOnChange} {...props} />;
 };
 
 export default RegularDropDown;

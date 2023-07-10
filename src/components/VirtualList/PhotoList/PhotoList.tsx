@@ -6,7 +6,7 @@ import PhotoItem from "@/components/VirtualList/PhotoList/PhotoItem";
 interface PhotoListProps {
     photos: IPhoto[];
     openPreviewModal: (photo: IPhoto) => void;
-    renderPhotoItem?: ({ index, style }: { index: number; style: React.CSSProperties }) => React.Element;
+    renderPhotoItem?: ({ index, style }: { index: number; style: React.CSSProperties }) => React.ReactElement;
 }
 
 const PhotoList: React.FC<PhotoListProps> = ({photos, openPreviewModal, renderPhotoItem}) => {
