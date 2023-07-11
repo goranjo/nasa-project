@@ -41,8 +41,7 @@ const CalendarWithRange: React.FC<CalendarWithRange> = ({onChange, dateRange, ..
 
         onChange(datesRanges as { startDate: Date | null; endDate: Date | null });
 
-        if (dateRange?.startDate && dateRange?.endDate) {
-            console.log('aaaaaaaaaa')
+        if (datesRanges?.startDate && datesRanges?.endDate) {
             closeCalendar();
         }
 
