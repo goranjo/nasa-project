@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { FixedSizeList } from 'react-window';
 import NEOItem from '@/modules/NewEarthObjectsList/NeoItem/NeoItem';
-import { iNEO } from '@/modules/NewEarthObjectsList/types/iNEO';
+import { INeo } from '@/modules/NewEarthObjectsList/types/INeo.tsx';
 import config from '@/config/config';
 import { formatEarthDate } from '@/modules/MarsRoverPhotos/helpers/helpers';
-import { Link } from 'react-router-dom';
 import { ProgressSpinner } from 'primereact/progressspinner';
+import {CustomLink, NeoListWrapper} from "@/modules/NewEarthObjectsList/NeoList/NeoList.styled.tsx";
 
 interface NEOListProps {
-    neos: iNEO[];
-    setNEOs: (neos: iNEO[]) => void;
+    neos: INeo[];
+    setNEOs: (neos: INeo[]) => void;
     startDate: string | Date | null;
     endDate: string | Date | null;
 }
@@ -31,7 +31,7 @@ const NEOList: React.FC<NEOListProps> = ({neos, setNEOs, startDate, endDate }): 
             const data = await response.json();
 
             const neoData = data.near_earth_objects;
-            const neos: iNEO[] = [];
+            const neos: INeo[] = [];
 
             for (const date in neoData) {
                 const neoItems = neoData[date];
@@ -84,18 +84,18 @@ const NEOList: React.FC<NEOListProps> = ({neos, setNEOs, startDate, endDate }): 
         }
     }, []);
 
-    const renderNEOItem = ({ index, style }: any) => {
+    const renderNEOItem = ({ index, style }: { index: number; style: React.CSSProperties }) => {
         const neo = neos[index];
 
         return (
-            <Link key={neo.id} to={`/near-earth-objects/${neo.id}`} style={style}>
+            <CustomLink key={neo.id} to={`/near-earth-objects/${neo.id}`} style={style}>
                 <NEOItem neo={neo} />
-            </Link>
+            </CustomLink>
         );
     };
 
     return (
-        <div>
+        <NeoListWrapper>
             {loading && (
                 <ProgressSpinner
                     style={{
@@ -113,7 +113,7 @@ const NEOList: React.FC<NEOListProps> = ({neos, setNEOs, startDate, endDate }): 
                     {renderNEOItem}
                 </FixedSizeList>
             )}
-        </div>
+        </NeoListWrapper>
     );
 };
 

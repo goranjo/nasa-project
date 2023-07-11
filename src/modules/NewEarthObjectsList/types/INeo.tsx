@@ -1,4 +1,4 @@
-export interface iNEO {
+export interface INeo {
     id: string;
     closestDistance: number;
     name: string;

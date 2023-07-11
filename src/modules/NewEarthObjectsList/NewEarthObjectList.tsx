@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import CalendarWithRange from '@/components/ui/Calendar/CalendarWithRange/CalendarWithRange';
 import NeoList from '@/modules/NewEarthObjectsList/NeoList/NeoList';
 import {Button} from "primereact/button";
-import {iNEO} from "@/modules/NewEarthObjectsList/types/iNEO.tsx";
+import {INeo} from "@/modules/NewEarthObjectsList/types/INeo.tsx";
 
 const NewEarthObjectList: React.FC = (): React.ReactElement => {
     const [dateRange, setDateRange] = useState<{
@@ -12,7 +12,7 @@ const NewEarthObjectList: React.FC = (): React.ReactElement => {
         startDate: null,
         endDate: null,
     });
-    const [neos, setNEOs] = useState<iNEO[]>([]);
+    const [neos, setNEOs] = useState<INeo[]>([]);
 
     useEffect(() => {
         const storedSearchParams = JSON.parse(localStorage.getItem('searchParams') || '{}');
