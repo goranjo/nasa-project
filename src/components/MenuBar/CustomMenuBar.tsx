@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {StyledMenuBar, StyledMenuItem} from "@/components/MenuBar/CustomMenuBar.styled.tsx";
 
 const CustomMenuBar = () => {
@@ -31,10 +31,12 @@ const CustomMenuBar = () => {
                 <ul>
                     {items.map((item) => (
                         <StyledMenuItem key={item.to}>
-                            <Link to={item.to}>
+                            <NavLink to={item.to} style={({isActive}) => ({
+                                color: isActive ? '#ADFF2F' : '#000'
+                            })}>
                                 <i className={item.icon}></i>
                                 {item.label}
-                            </Link>
+                            </NavLink>
                         </StyledMenuItem>
                     ))}
                 </ul>
