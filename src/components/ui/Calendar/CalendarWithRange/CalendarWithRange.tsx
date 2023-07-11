@@ -1,24 +1,32 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {Calendar, CalendarProps, CalendarChangeEvent} from 'primereact/calendar';
 
 interface CalendarWithRange extends Omit<CalendarProps, 'value' | 'onChange'> {
-    dateRange?: { startDate: Date | null; endDate: Date | null };
-    onChange: (value: Date | Date[] | null) => void;
+    dateRange?: { startDate: Date | string | null; endDate: Date | string | null };
+    onChange: (value: { startDate: Date | null; endDate: Date | null }) => void;
 }
 
 const CalendarWithRange: React.FC<CalendarWithRange> = ({onChange, dateRange, ...rest}) => {
     const {placeholder} = rest;
-    const [dates, setDates] = useState<Date | Date[] | null>(null);
+    const [dates, setDates] = useState<Date | Date[] | null>([]);
     const calendarRef = useRef<Calendar>(null);
+
+    useEffect(() => {
+        if (dateRange?.startDate === null && dateRange?.endDate === null) {
+            setDates([])
+        } else {
+            setDates([dateRange?.startDate as Date, dateRange?.endDate as Date]);
+        }
+    }, [dateRange])
 
     const handleOnChange = (e: CalendarChangeEvent): void => {
         const value = e.value;
         const parsedValue: Date | Date[] | null = typeof value === 'string' ? new Date(value) : value || null;
         setDates(parsedValue);
 
-        let dateRange = null;
+        let datesRanges = null;
         if (Array.isArray(parsedValue)) {
-            dateRange = parsedValue.reduce(
+            datesRanges = parsedValue.reduce(
                 (prev: { startDate: Date | null; endDate: Date | null }, curr: Date, index: number) => {
                     if (index === 0) {
                         return {startDate: curr, endDate: null};
@@ -31,11 +39,13 @@ const CalendarWithRange: React.FC<CalendarWithRange> = ({onChange, dateRange, ..
             );
         }
 
-        onChange(dateRange as Date | Date[] | null);
+        onChange(datesRanges as { startDate: Date | null; endDate: Date | null });
 
         if (dateRange?.startDate && dateRange?.endDate) {
+            console.log('aaaaaaaaaa')
             closeCalendar();
         }
+
     };
 
     const closeCalendar = () => {
@@ -60,7 +70,7 @@ const CalendarWithRange: React.FC<CalendarWithRange> = ({onChange, dateRange, ..
                 <Calendar
                     ref={calendarRef}
                     selectionMode="range"
-                    value={dates || [dateRange?.startDate, dateRange?.endDate] as Date | Date[] | null}
+                    value={dates}
                     onChange={handleOnChange}
                     showIcon={false}
                     placeholder={placeholder}

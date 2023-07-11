@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 import { ProgressSpinner } from 'primereact/progressspinner';
 
 interface NEOListProps {
+    neos: iNEO[];
+    setNEOs: (neos: iNEO[]) => void;
     startDate: string | Date | null;
     endDate: string | Date | null;
 }
 
-const NEOList: React.FC<NEOListProps> = ({ startDate, endDate }): React.ReactElement => {
-    const [neos, setNEOs] = useState<iNEO[]>([]);
+const NEOList: React.FC<NEOListProps> = ({neos, setNEOs, startDate, endDate }): React.ReactElement => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const fetchNEOs = async (): Promise<void> => {
